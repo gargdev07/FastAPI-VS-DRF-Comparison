@@ -167,36 +167,6 @@ In the latest measured local run, FastAPI had lower mean latency and higher obse
 - Local benchmark values vary by hardware, background activity, dependency versions and server configuration.
 - Contributor branches are prepared for the four work streams; individual contributors should authenticate with their own GitHub accounts before recording personal commits.
 
-## 10-minute demo plan
 
-1. **0:00–1:00** State the objective and diagram the React client, two APIs, separate SQLite files and DummyJSON source; introduce the four assigned work streams.
-2. **1:00–3:00** Create, edit, search and delete a product with FastAPI; show health and `/docs`.
-3. **3:00–4:00** Switch to DRF and show its independent catalog and Swagger schema.
-4. **4:00–5:00** Import DummyJSON once, then repeat to show created versus skipped counts and cache status.
-5. **5:00–7:00** Run the validation lab and compare matching statuses and field errors, including empty PATCH and missing ID.
-6. **7:00–8:30** Show comparison data, timestamp, sample count and benchmark configuration; distinguish historical results.
-7. **8:30–10:00** Explain serializers/Pydantic, sync/async, limitations and when each framework fits.
 
-## Viva questions to prepare
 
-1. **Why two databases?** Each backend owns an independent local catalog; switching APIs changes which local data the UI uses.
-2. **What do GET, POST, PUT, PATCH and DELETE mean here?** Read, create, replace, partial update and delete; their status codes and effects are checked in both implementations.
-3. **How do serializers differ from Pydantic?** DRF serializers map/validate Django model data; Pydantic validates typed request models used by FastAPI and OpenAPI.
-4. **Why is PATCH a separate schema?** Only supplied fields are validated and applied; required create fields are not incorrectly required, while unknown/null/empty updates have explicit behavior.
-5. **Why SQLite?** It is a low-setup persistent store suited to this assignment; it is not a production database recommendation.
-6. **What is cached?** A validated DummyJSON response is cached in memory for five minutes to avoid repeated external calls.
-7. **Is the FastAPI code async?** No. Its handlers and SQLite/upstream calls in this prototype are synchronous.
-8. **What does the benchmark measure?** Local client-to-server HTTP latency/throughput for health, list and retrieve, with identical temporary seed data and repeated trials; it does not predict production performance.
-9. **How should a framework be selected?** Based on project requirements, team familiarity, ecosystem, async needs and representative tests, not one small benchmark.
-
-## Screenshots and submission
-
-Capture genuine screenshots from the running app for: catalog with each backend selected, successful CRUD/import behavior, validation lab results and comparison report. Store them in your submission folder and refer to them here; screenshots are intentionally not fabricated or included as if they were captured. Complete member names/roles and verify setup on the presentation machine.
-
-## Docker (optional local demonstration)
-
-With Docker Compose installed, `docker compose up --build` starts the three local services at ports 5173, 8000 and 8001. Named volumes preserve the separate databases. This is a demonstration configuration, not deployment infrastructure. A real deployment needs production-grade ASGI/WSGI serving, secure environment secrets, TLS/proxying, persistent managed storage, backups and appropriate database settings; do not expose Django/Vite development servers as production services.
-
-## Repository hygiene and layout
-
-`.gitignore` excludes `.env`, SQLite files and sidecars, Python caches, virtual environments, `node_modules`, build output and test caches. Keep credentials out of source and browser configuration. Main files: `backend/fastapi_app/`, `backend/drf_app/`, `frontend/`, `tests/test_contract.py`, `scripts/benchmark.py`, `scripts/count_loc.py`, `scripts/run_checks.py`, `benchmark-results/`, and `quality-results/`. The `docs/` folder contains the detailed project report and contributor branch plan. The measured benchmark JSON and saved quality JSON are committed as evidence; their timestamps and configuration are documented above. The GitHub repository is a new snapshot, so prior individual commit history is not represented.
