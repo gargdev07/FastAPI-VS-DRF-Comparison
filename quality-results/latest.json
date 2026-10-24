@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "measured_at_utc": "2026-10-23T20:38:19.745906+00:00",
+  "passed": 3,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "FastAPI and cross-framework contract tests",
+      "command": "C:\\Program Files\\Python313\\python.exe -m pytest -q backend/fastapi_app tests",
+      "exit_code": 0,
+      "passed": true,
+      "output": "....                                                                     [100%]\n4 passed in 5.51s"
+    },
+    {
+      "name": "Django REST Framework tests",
+      "command": "C:\\Program Files\\Python313\\python.exe manage.py test",
+      "exit_code": 0,
+      "passed": true,
+      "output": "Found 1 test(s).\nSystem check identified no issues (0 silenced).\n\nCreating test database for alias 'default'...\n\nC:\\Program Files\\Python313\\Lib\\unittest\\case.py:116: UserWarning: Overriding setting DATABASES can lead to unexpected behavior.\n  result = enter(cm)\n.\n----------------------------------------------------------------------\nRan 1 test in 0.893s\n\nOK\nDestroying test database for alias 'default'..."
+    },
+    {
+      "name": "React production build",
+      "command": "npm.cmd run build",
+      "exit_code": 0,
+      "passed": true,
+      "output": "> framework-comparison-dashboard@1.0.0 build\n> vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n\u00e2\u0153\u201c 1933 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.55 kB \u00e2\u201d\u201a gzip:  0.36 kB\ndist/assets/index-BbneMjkV.css   18.20 kB \u00e2\u201d\u201a gzip:  5.06 kB\ndist/assets/index-B8dbv2ds.js   256.52 kB \u00e2\u201d\u201a gzip: 79.91 kB\n\n\u00e2\u0153\u201c built in 757ms"
+    }
+  ]
+}
